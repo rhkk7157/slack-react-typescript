@@ -53,6 +53,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
+  margin-top: 10px;
   margin-bottom: 12px;
   width: 100%;
   max-width: 100%;
