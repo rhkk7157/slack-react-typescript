@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import useSWR from 'swr';
 
 const LogIn = () => {
-  const { data, error, revalidate } = useSWR('http://localhost:3095/api/users', fetcher, {
+  const { data, error, revalidate, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
     dedupingInterval: 1000000,
   });
   const [logInError, setLogInError] = useState(false);
@@ -26,8 +26,8 @@ const LogIn = () => {
           },
           { withCredentials: true },
         )
-        .then(() => {
-          revalidate();
+        .then((response) => {
+          mutate(response.data);
         })
         .catch((error) => {
           console.error(error);
