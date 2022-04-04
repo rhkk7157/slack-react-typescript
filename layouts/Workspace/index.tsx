@@ -1,7 +1,7 @@
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import React, { FC, useCallback } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import useSWR from 'swr';
 import gravatar from 'gravatar';
 import {
@@ -15,6 +15,8 @@ import {
   Workspaces,
   WorkspaceWrapper,
 } from './style';
+import Channel from '@pages/Channel';
+import DirectMessage from '@pages/DirectMessage';
 
 const Workspace: FC = ({ children }) => {
   const { data, error, revalidate, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
@@ -47,9 +49,14 @@ const Workspace: FC = ({ children }) => {
           <WorkspaceName>Sleact</WorkspaceName>
           <MenuScroll>menu scroll</MenuScroll>
         </Channels>
-        <Chats>Chats</Chats>
+        <Chats>
+          <Switch>
+            <Route path="/workspace/channel" component={Channel} />
+            <Route path="/workspace/dm" component={DirectMessage} />
+          </Switch>
+        </Chats>
+        {children}
       </WorkspaceWrapper>
-      {children}
     </div>
   );
 };
