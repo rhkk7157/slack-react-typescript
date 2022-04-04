@@ -1,2 +1,3 @@
 # slack-clone
-React, TypeScript, SWR, webpack, babel, Socket io
+
+React, TypeScript, SWR, webpack, babel, Socket io, gravatar
