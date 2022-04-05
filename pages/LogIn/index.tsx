@@ -30,7 +30,7 @@ const LogIn = () => {
           mutate(response.data);
         })
         .catch((error) => {
-          console.error(error);
+          console.dir(error);
           setLogInError(error.response?.data?.statusCode === 401);
         });
     },
@@ -41,7 +41,7 @@ const LogIn = () => {
     return <div>로딩중...</div>;
   }
   if (data) {
-    return <Redirect to="/workspace/channel" />;
+    return <Redirect to="/workspace/sleact/channel/일반" />;
   }
 
   return (
