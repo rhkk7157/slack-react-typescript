@@ -28,7 +28,8 @@ import { IChannel, IUser } from '@typings/db';
 import { Button, Input, Label } from '@pages/SignUp/style';
 import useInput from '@hooks/useInput';
 import Modal from '@components/Modal';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CreateChannelModal from '@components/CreateChannelModal';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import InviteChannelModal from '@components/InviteChannelModal';
@@ -103,7 +104,10 @@ const Workspace: VFC = () => {
         })
         .catch((error) => {
           console.dir(error);
-          toast.error(error.response?.data, { position: 'bottom-center' });
+          toast.error(error.response?.data, {
+            autoClose: 3000,
+            position: toast.POSITION.BOTTOM_CENTER,
+          });
         });
     },
     [newWorkspace, newUrl],
@@ -212,6 +216,7 @@ const Workspace: VFC = () => {
         onCloseModal={onCloseModal}
         setShowInviteChannelModal={setShowInviteChannelModal}
       />
+      <ToastContainer />
     </div>
   );
 };
